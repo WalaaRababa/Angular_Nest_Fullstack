@@ -1,3 +1,4 @@
 export default interface User {
-    name:string
+    name:string;
+    _id:string;
 }

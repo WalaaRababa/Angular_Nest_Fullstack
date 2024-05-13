@@ -22,13 +22,18 @@
   </div>
 
   <div class="flex gap-2 justify-end">
-    <button (click)="toggleExpanding()"
+    <button
+      (click)="toggleReplying()"
       class="inline-block rounded border border-current px-6 py-2 text-sm font-medium text-indigo-600 transition hover:rotate-2 hover:scale-110 focus:outline-none focus:ring active:text-indigo-500"
     >
       reply
     </button>
     <button>likes</button>
-    <button (click)="toggleExpanding()" class="duration-200" [class.rotate-180]="isExpanding()">
+    <button
+      (click)="toggleExpanding()"
+      class="duration-200"
+      [class.rotate-180]="isExpanding()"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -45,11 +50,15 @@
       </svg>
     </button>
   </div>
+  <section *ngIf="isReplying()">
+<app-comment-form (formSubmitted)="createComment($event)"
+ placeholder="write reply on comment" buttonText="reply"></app-comment-form>
+  </section>
   <section *ngIf="isExpanding()">
-<app-comment [comment]="nested" *ngFor="let nested of nestedComments()"></app-comment>
-<div *ngIf="!nestedComments().length">
-    no comment for this post
-</div>
-</section>
- 
+    <app-comment
+      [comment]="nested"
+      *ngFor="let nested of nestedComments()"
+    ></app-comment>
+    <div *ngIf="!nestedComments().length">no comment for this post</div>
+  </section>
 </div>

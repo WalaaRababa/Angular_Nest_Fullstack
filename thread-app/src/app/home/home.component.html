@@ -1,5 +1,5 @@
 <section class="max-w-md flex flex-col gap-4 mx-auto">
+  <app-comment-form (formSubmitted)="createComment($event)"></app-comment-form>
+
   <app-comment [comment]="item"  *ngFor="let item of comments()"></app-comment>
-
-
 </section>
